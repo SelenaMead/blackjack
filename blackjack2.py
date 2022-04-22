@@ -70,14 +70,34 @@ class Human:
         for card in cards:
             total = card + total
         return total 
-    def human_turn(hit_or_stay, human_deck):
+    def human_turn(play, human_deck):
         #humans hit sequence
-        while hit_or_stay == 'hit':
+        # while hit_or_stay == 'hit':
+        #     hit_or_stay = input("Would you like to hit or stay?")
+        #     if hit_or_stay.lower() == 'hit':
+        #         print("Your new deck looks like: ")
+        #         human_deck.append(Human.hit())
+        #         print(human_deck)
+        #     elif hit_or_stay .lower()== 'stay':
+        #         continue
+        #     else:
+        #         print("Please enter either hit or stay")
+        play = True
+        while play == True:
             hit_or_stay = input("Would you like to hit or stay?")
-            if hit_or_stay == 'hit':
+            if hit_or_stay.lower() == 'hit':
                 print("Your new deck looks like: ")
                 human_deck.append(Human.hit())
                 print(human_deck)
+            elif hit_or_stay .lower()== 'stay':
+                play == False
+                break
+            else:
+                print("Please enter either hit or stay")
+
+        return play
+                
+
 
    
 
@@ -103,7 +123,7 @@ class Game:
     def run():
         #variables
         human_deck = Human.deck()
-        hit_or_stay = 'hit'
+        play = True
         dealer_deck = Dealer.hide_deck()
 
         print("Your cards are:  ")
@@ -112,7 +132,7 @@ class Game:
         print(dealer_deck)
         
        
-        Human.human_turn(hit_or_stay, human_deck)
+        Human.human_turn(play, human_deck)
         
         print("Dealers cards are now shown: ")
         Dealer.display_cards(dealer_deck)
